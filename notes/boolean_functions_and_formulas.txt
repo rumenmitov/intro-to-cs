@@ -1,0 +1,49 @@
+* Boolean Functions and Formulas
+
+    Definition: A boolean expression is
+
+    Definition: A boolean function, f, is any function of the type
+                f:B^k→B, where k ≥ 0.
+
+    → 0, 1            → boolean constants (either 0 or 1), k = 0
+    → X, Y, Z         → boolean variables B^1
+    → ¬A              → boolean expression
+    → F(X, Y, Z, ...) → boolean function
+
+
+    NOTE: We will have (2^k)-rows in the truth table.
+
+    ** Syntax of boolean formulas
+
+        NOTE: 0 + 1 is syntactically not a Boolean formula.
+        NOTE: 0 or 1 is syntactically not a Boolean formula, missing parenthesis.
+        NOTE: (x_1 or x_2 or x_3) is syntactically not a Boolean formula, only two variables can be evaluated at a time.
+        NOTE: (-0 or 1) is syntactically a boolean formula, since -f is a valid Boolean formula.
+
+    ** Semantics of boolean formulas
+        1a -> interpretation of boolean expression is assigned a boolean value
+        NOTE: I* is the interpretation of the boolean formula
+
+    ** Example
+
+        F(X, Y, Z) = ((X ∧ Y) ∨ (X ∧ ¬Z) ∨ (Z ∧ ¬0))
+
+        How many rows? 2^3 = 8
+        
+        G(X, Y, Z) = X ∨ Z
+
+        F ⇔ G when their truth tables match
+
+
+        | X | Y | Z |   |  Result |
+        ----+---+---+---+---------|
+        | 0 | 0 | 0 | 
+        | 0 | 0 | 1 |
+        | 0 | 1 | 0 |
+        | 0 | 1 | 1 |
+        | 1 | 0 | 0 |
+        | 1 | 0 | 1 |
+        | 1 | 1 | 0 |
+        | 1 | 1 | 1 |
+
+        NOTE: Each row is an interpretation.

@@ -1,0 +1,49 @@
+Problem Sheet #11
+----------------
+
+* Rumen Mitov *
+
+
+* Problem 11.1
+
+** a)
+    
+    Registers:
+        x0      → 0
+        x10     → a
+        x11     → b
+        x28     → 1 (temporary register)
+        x29     → a is odd (temporary register)
+        x30     → r (temporary register)
+
+    Code:
+        addi    x28, x0, 1      ; set bitmask to 1 (it will be used to check if a is odd)
+        addi    x30, x0, 0      ; initialize r to 0
+        bne     x10, x0, +12    ; while loop, if a ≠ 0 go to the loop body
+        addi    x10, x30, 0     ; function epilogue (setting return value in correct register)
+        jal     x0, 0           ; infinite loop, meaning halt execution
+        and     x29, x10, x28   ; use bitmask from earlier to check if a is odd
+        beq     x29, x28, +16   ; check if the result from the bitmask is true, if yes then go to if body
+        srli    x10, x10, 1     ; right bit shift of a by 1
+        slli    x11, x11, 1     ; left bit shift of b by 1
+        jal     x0, -28         ; go to while loop condition
+        add     x30, x30, x11   ; increment r by b
+        jal     x0, -16         ; exit if body and go back to where it left off
+
+** b) 
+    
+    A function prologue is machine code that runs before the main code. It
+    ensures that everything is set up properly for the program to execute 
+    correctly.
+
+    A function epilogue is machine code that runs after the program terminates.
+    It resets the CPU to the state it was in before having executed the main
+    code.
+
+** c) 
+
+    The function needs a function prologue to set up the bitmask.
+    It does not need a function epilogue as the state of the registers
+    will be reset by the next function call.
+
+

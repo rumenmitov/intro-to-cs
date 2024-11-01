@@ -1,0 +1,11 @@
+
+Definition: A seq digital circuit implements a non-pure boolean function where the 
+results depend on both the inputs and the current state of the circuit.
+
+Definition: An async seq digital circuit is when the state of the circuit 
+
+
+
+SR latches
+
+

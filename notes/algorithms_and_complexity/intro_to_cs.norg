@@ -1,0 +1,61 @@
+* Introduction to CS
+
+*Definition* An algorithm is a self-contained sequence of computable 
+           actions to be performed in order to achieve a certain task.
+
+_NOTE_ Self-contained implies "complete".
+
+
+** Maze Generation Algorithm
+
+*Definition* A spanning tree is a tree graph that connects all nodes.
+
+_Example_
+
+Maze Input:
+
+Vertices (V) = { a, b, c, d, ..., p }
+
+Adjacencies (takes into account the dimension of the maze):
+    A = { (a,b), (a,e), (b,c) }
+
+Starting node (S) = a
+
+Exiting node (X) = p
+
+Tree graph (T) = G(V, A)
+
+Maze (M) = (T, S, X)
+
+Key takeaways of *Krushkal's Algorithm*:
+- Equivalence class between set of connected nodes.
+- Equivalence classes between for the connected edges 
+ would prevent loops from happening, as we cannot link 
+ members of a single equivalence class more than once.
+     
+Assume (k,o) is first wall we break.
+
+
+~ The equivalence class of all connected edges:
+    Q = { {a}, {b}, {c}, ..., {k,o}, ... }
+    Set of connected edges:
+    E = { (k, o) }
+~ We join another two edges checking if the new connected pair is already a member of the equivalence class
+    Q = { {a}, {b}, {c}, ..., {g,f}, {k,o}, ... }
+    E = { (g,f), (k,o) }
+~ We join again
+    Q = { {a}, {b}, {c}, ..., {g,f}, {j,k,o}, ... }
+    _NOTE_ {k} equivalence class is removed, since k was added to equivalence class of {j, k, o}
+    E = { (g,f), (k,o), (j,k) }
+~ Let's connect the two equivalence classes
+    Q = { {a}, {b}, {c}, ..., {g,f,j,k,o}, ... }
+    E = { (g,f), (k,o), (j,k), (f,j) }
+
+...
+...
+...
+
+In order for the graph to be complete, all edges are members of one equivalence class.
+In the end we will get:
+    Q = { {a, b, c,...,p} }
+    E = { (k,o), (f,g), ... }

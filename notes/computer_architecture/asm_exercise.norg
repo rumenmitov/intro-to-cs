@@ -1,0 +1,21 @@
+b5 → 101 1 0101      » EQUAL #5
+cf → 110 0 1111      » JUMP 15
+f0 → 111 1 0000      » HALT
+20 → 001 0 0000      » LOAD 0
+91 → 100 1 0001      » SUB #1
+40 → 010 0 0000      » STORE 0 
+30 → 001 1 0000      » LOAD #0
+d0 → 110 1 0000      » JUMP #0
+00
+00
+00
+00
+00
+00
+00
+03 → 000 0 0011
+
+
+⇒ decrementing loop (5 iterations).
+
+_NOTE:_ Accumulator is set to 0 by default.

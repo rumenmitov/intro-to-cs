@@ -1,0 +1,56 @@
+* Complexity, correctness and Engineering
+* Big O Notation (Landau Notation)
+
+*Definition (asymptotically bounded)* f,g are two functions N → N. f is 
+asymptoticaly bounded by g, written as f ≤ a*g ⇔ there is an n_0 such that
+f(n) ≤ g(n), ∀n > n_0.
+
+Definition (Landau Sets): The three Landau Sets O(g), Om(g), phi(g) are
+defined as follows:
+    - O(g) = {f | exists k to N, f <=a k*g} -> best case
+    - Om(g) = {f | exists k to N, k*g <=a f} -> worst case
+    - phi(g) = O(g) and Om(g) -> average case
+
+Commonly used Landau Sets:
+    - O(1) -> constant (input size does not matter)
+    - O(ln(n)) -> logarithmic
+    - O(n) -> linear
+    - O(n * ln(n)) -> linear logarithmic
+    - O(n**2) -> quadratic
+    - O(x**n) -> exponentional
+
+NOTE: Higher up scales better!
+
+NOTE: Landau Sets are used for both time and resource (space) complexity.
+
+Theorem (Landau Set Completion Rules):
+    - k != 0 and f in O(g) => k*f in O(g)
+    - if f in O(g1) and h in O(g2) => (f + h) in O(max{g1, g2})
+    - if f1 in O(g1) and h in O(g2) => f*h in O(g1*g2)
+
+
+Correctness
+
+Definition (partial correctness): An algortithm starting in a state that
+satisfies a precondition P is partially correct with respect to P and Q if 
+results produced by the algorithm satisfy the postcondition Q. Partial 
+correctness does not require that a result is always produced, i.e., the 
+algorithm may not always terminate.
+
+Definition (total correctness): An algorithm is totally correct with respect
+to P and Q if it is partially correct with respect to P and Q and it always 
+terminates.
+
+Definition (deterministic algorithm): A deterministic algorithm is an algorithm
+which, given a particular input, will always produce the same output, with
+the execution always passing through the same sequence of states.
+
+Factors making algorithm non-deterministic:
+    - external states
+    - user input
+    - timers
+    - random values
+    - hardware errors
+
+Definition (randomized algorithm): A randomized algorithm is an algorithm
+that employs a degree of randomness as part of its logic.

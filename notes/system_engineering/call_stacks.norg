@@ -1,0 +1,12 @@
+* call stacks
+
+A call stack holds a stack frame for every active function call, it must store memory for:
+- return address 
+- 2
+- 3
+
+A function prologue is a sequence of machine instructions at the beginning of a function
+  that prepare the stack and the registers for use in the function.
+
+A function call epilogue us a sequence of machine instructions at the end of a function, that restores the
+  state before the function call.

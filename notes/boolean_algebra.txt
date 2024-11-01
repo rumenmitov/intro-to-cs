@@ -1,0 +1,27 @@
+* Boolean Algebra
+
+    Definition: A boolean variable is an object that can take one of two values
+                0 or 1.
+
+    Definition: Interpretation
+
+    and
+    or
+    not
+    implies (→) can be represented by (-x or y)
+    equivalence(⇔) can be represented by ( (x and y) or (-x and -y) )
+    exclusive or(XOR) can be represented by ( -[(x and y) or (-x and -y)] )
+    not and (NAND) can be represented by (-[x and y])
+    nor or (NOR) can be represented by (-[x or y])
+
+    NOTE: Consider X XOR Y = Z, then Z XOR Y = X.
+
+    0x42 = 0b 0100 0010
+    0x13 = 0b 0001 0011
+
+
+        After XOR = 0b 0101 0001
+
+        After XOR with 0x13 = 0b 0100 0010 = 0x42
+
+    NOTE: For two inputs can have 2^4 = 16 functions.

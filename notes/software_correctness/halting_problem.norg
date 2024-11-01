@@ -1,0 +1,3 @@
+* Halting Problem
+- Partial correctness → algorithm doesn't have to terminate
+- Total correctness → algorithm terminates

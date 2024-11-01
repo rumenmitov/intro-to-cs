@@ -1,0 +1,23 @@
+  ((X ∨ Y) and (not Y or Z)) and Z
+  X or Y and Z(not Y or 1)                            # associativity and domination
+  X or Y and Z(1)                                     # associativity 
+  (X and not Y) and Z                                 # idempotency
+
+
+  X ⇒ X or Y is a tautology
+
+  X  |  Y  |  X or Y  |  ⇒
+  -------------------------
+  0   0      0          1
+  0   1      1          1
+  1   0      1          1
+  1   1      1          1
+
+
+    = not X or (X or Y)          # converting implication
+    = (not X or X) or Y
+    = 1 ∨ Y
+    = 1
+
+
+X ∨ (¬X ∧ Y) = (X ∨ ¬X) and (X ∨ Y) = X ∨ Y 

@@ -1,0 +1,8 @@
+* Number Representation Summary
+
+    ℕ   natural numbers  → binary representation
+    ℤ   integer numbers  → fixed size b-complement representation
+    ℚ   rational numbers → represent using two integer numbers
+    ℝ   real numbers     → floating point numbers (approximation)
+                           |
+                           → sign bit, biased exponent, mantissa

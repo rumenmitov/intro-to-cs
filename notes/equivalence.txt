@@ -1,0 +1,12 @@
+* Equivalence
+
+    Definition: Adapted interpretation if all boolean variables occur in the interpretation.
+
+    Definition: A tautology is when the boolean function is always true.
+
+    Definition: A contradiction is when the boolean function is always false.
+
+    Definition: A boolean function is satisfied if the interpretation of the function is 1.
+                A boolean function is satisfiable if there exists an interpretation that is 1.
+
+    Definition: Two formulas are equivalent if all of their interpretations are the same.

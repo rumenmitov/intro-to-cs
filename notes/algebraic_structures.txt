@@ -1,0 +1,47 @@
+* Algebraic Structures
+    
+    Definition: An algebraic structure consists of a non-empty set and a collection of operations
+                we could do on the set, and a finite set of axioms that these operations must satisfy.
+
+    Definition: A magma (S*) is an algebraic structure consisting of set S, together with operation * satisfying:
+                ∀a,b ∈ S: a * b ∈ S -> closure
+
+    Definition: Closure is when you take any two elements of set S, and the operation * of these two elements
+                will produce an element which belongs to S.
+
+    NOTE: The operation * is a function *: S x S -> S
+
+    Definition: A semigroup (S, *) is an algebraic structure consisting of set S together with operation
+                *: S x S -> S satisfying property:
+                ∀a,b,c ∈ S: a * (b * c) = (a * b) * c -> associativity
+
+    Definition: A monoid (S, *, e), where e is the identity element with properties:
+                e * a = a = a * e -> identity
+
+    Definition: A group (S, *, e) with property:
+                a * b = e -> inverse element
+
+    Definition: An abelian group (S, *, e) with property:
+                a * b = b * a -> commutativity
+
+    Definition: A ring (S, + , ., 0, 1) has two operations (+, .) with properties:
+        1. (S, +, 0) is an abelian group
+        2. (S, ., 1) is a monoid
+        3. Multiplication is distributive with respect to + operator:
+
+    Definition: A field (S, +, ., 0, 1) with properties:
+        1. (S, +, 0) is a group
+        2. (S\{0}, ., 1) is a group
+        3. . operator is distributive over + operator
+
+    Definition: Homomorphism 
+
+    Definition: Monomorphism
+
+    Definition: Epimorphism
+
+    Definition: Isomorphism
+
+    Definition: Endomorphism
+
+    Definition: Automorphism

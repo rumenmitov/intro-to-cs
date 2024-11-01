@@ -1,0 +1,117 @@
+import Test.HUnit
+
+{-
+  takes in a normal character and it encodes it 
+  according to the table provided
+-}
+encChar :: Char -> Char
+encChar 'a' = '@'
+encChar 'b' = '8'
+encChar 'c' = '('
+encChar 'd' = '6'
+encChar 'e' = '3'
+encChar 'f' = '{'
+encChar 'g' = '9'
+encChar 'h' = '#'
+encChar 'i' = '1'
+encChar 'l' = '!'
+encChar 'o' = '0'
+encChar 'q' = '2'
+encChar 's' = '$'
+encChar 'x' = '%'
+encChar 'y' = '?'
+-- if not one of above options return character as is
+encChar ch = ch
+
+{-
+  takes in an encoded character and it decodes it 
+  according to the table provided
+-}
+decChar :: Char -> Char
+decChar '@' = 'a'
+decChar '8' = 'b'
+decChar '(' = 'c'
+decChar '6' = 'd'
+decChar '3' = 'e'
+decChar '{' = 'f'
+decChar '9' = 'g'
+decChar '#' = 'h'
+decChar '1' = 'i'
+decChar '!' = 'l'
+decChar '0' = 'o'
+decChar '2' = 'q'
+decChar '$' = 's'
+decChar '%' = 'x'
+decChar '?' = 'y'
+-- if not one of above options return character as is
+decChar ch = ch
+
+
+encChar_test = TestList [
+    encChar 'a' ~?= '@',
+    encChar 'b' ~?= '8',
+    encChar 'c' ~?= '(',
+    encChar 'd' ~?= '6',
+    encChar 'e' ~?= '3',
+    encChar 'f' ~?= '{',
+    encChar 'g' ~?= '9',
+    encChar 'h' ~?= '#',
+    encChar 'i' ~?= '1',
+    encChar 'l' ~?= '!',
+    encChar 'o' ~?= '0',
+    encChar 'q' ~?= '2',
+    encChar 's' ~?= '$',
+    encChar 'x' ~?= '%',
+    encChar 'y' ~?= '?',
+    encChar 't' ~?= 't'
+    ]
+
+decChar_test = TestList [
+    decChar '@' ~?= 'a',
+    decChar '8' ~?= 'b',
+    decChar '(' ~?= 'c',
+    decChar '6' ~?= 'd',
+    decChar '3' ~?= 'e',
+    decChar '{' ~?= 'f',
+    decChar '9' ~?= 'g',
+    decChar '#' ~?= 'h',
+    decChar '1' ~?= 'i',
+    decChar '!' ~?= 'l',
+    decChar '0' ~?= 'o',
+    decChar '2' ~?= 'q',
+    decChar '$' ~?= 's',
+    decChar '%' ~?= 'x',
+    decChar '?' ~?= 'y',
+    decChar 't' ~?= 't'
+    ]
+
+-- recieves a string and encodes it based on the table provided
+enc :: [Char] -> [Char]
+enc xs = map encChar xs
+
+
+-- recieves a string and decodes it based on the table provided
+dec :: [Char] -> [Char]
+dec xs = map decChar xs
+
+
+enc_test = TestList [
+    enc "hello world" ~?= "#3!!0 w0r!6",
+    enc "guten tag!" ~?= "9ut3n t@9!",
+    enc "900" ~?= "900",
+    enc "abc" ~?= "@8("
+    ]
+
+dec_test = TestList [
+    dec "#3!!0 w0r!6" ~?= "hello world",
+    dec "9ut3n t@9!" ~?= "guten tagl",
+    dec "900" ~?= "goo",
+    dec "abc" ~?= "abc"
+    ]
+
+main = runTestTT $ TestList [ 
+    encChar_test,
+    decChar_test,
+    enc_test,
+    dec_test
+    ]

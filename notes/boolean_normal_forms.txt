@@ -1,0 +1,43 @@
+* Normal Forms
+
+    Definition: A literal is a variable that has on of the forms:
+    - X
+    - ¬X
+    - 0
+    - ¬0
+    - 1
+    - ¬1
+    
+    NOTE: If a literal includes negation, it is said to be negative.
+
+    Definition: A monomial (product) is a conjunction (logical and) of literals.
+
+    Definition: A clause (sum) is a disjunction (logical or) of literals.
+
+    Definition: A conjunction normal form (CNF) is a conjunction of disjunction of literals.
+
+    Definition: A disjunctive normal form (DNF) is a disjunction of conjunction of literals.
+
+    NOTE: Every boolean expression can be represented in CNF and in DNF.
+
+    Definition: A minterm of a boolean function is a monomial where each term is either X or ¬X. Used for CNF.
+    |
+    → Notation: m_d
+
+                                        1      0     1     1       1     0      0     1
+                                        +      -     +     +       +     -      -     +
+        e.g. F(X_3, X_2, X_1, X_0) = (X_3 ∧ ¬X_2 ∧ X_1 ∧ X_0) ∨ (X_3 ∧ ¬X_2 ∧ ¬X_1 ∧ X_0)
+                                   = m_11 ∨ m_10 (subscript is decimal conversion from binary); negative literals = 0, positive literal = 1
+
+
+    Definition: A maxterm of a boolean function is a clause where each term is either X or ¬X. Used for DNF.
+    |
+    → Notation: M_d
+    → Bits are flipped: negative literals = 1, positive literal = 0
+
+
+    Obtaining DNF from truth table
+    Obtaining CNF from truth table
+
+    NOTE: A tautology in CNF and DNF is 1 (you then have to convert to minterm / maxterm notation).
+    NOTE: A contradiction in CNF and DNF is 0 (you then have to convert to minterm / maxterm notation).

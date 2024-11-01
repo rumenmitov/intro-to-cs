@@ -1,0 +1,10 @@
+* Interpreter and Compiler
+** Compiler Phases
+   ~ Tokenization
+   ~ Parse tree
+   ~ Abstact syntax tree
+   ~ Intermediate code (pre-optimization)
+   ~ Optimized intermidiate code
+   ~ Machine code
+
+   *NOTE:* Compiler produces an _object file_.

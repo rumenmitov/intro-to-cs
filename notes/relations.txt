@@ -1,0 +1,104 @@
+* Relations
+   
+   Definition: A relation is a subset of the Cartesian Product of the sets
+               which it covers.
+
+   NOTE: A k-ary relation is defined over X_1 x X_2 x ... x X_k
+   |
+   -> e.g. unary is over X_1
+   -> e.g. binary is over X_1 x X_2
+
+   NOTE: Relations can be grouped:
+            - X_1 x X_2 x X_3 = X_1 x ( X_2 x X_3 )
+            - ( X_2 x X_3 ) is a tuple
+
+   Definition: A binary relation, R, of A x B. A is domain of R, B is codomain.
+               Subset A x B is called graph of R.
+
+   Definition: The inverse of binary relation R is the relation R^(-1) of B x A.
+
+   NOTE: b R^(-1) a ⇔ a R b
+
+   Definition: The image of a binary relation is the set of the codomain B of R,
+               that are related to set A.
+
+   Definition: The range of a binary relation is the set of elements in 
+               domain A that relate to at least one element in B.
+   |
+   -> e.g.
+        
+        Domain: A = { a, b, c }
+        Codomain: B = { 1, 2 }
+
+        Cartesian Product A x B = { (a, 1), (b, 1), (c, 1),
+                                    (a, 2), (b, 2), (c, 2) }
+
+        |A| = 3, |B| = 2
+
+        R = { (a, 1), (c, 1) } is a subset of A x B
+
+        Image of R = { 1 }
+        Range of R = { a, c }
+
+    Definition: An endorelation is a relation on one set.
+
+    Properties of Endorelations:
+    - Reflexive
+    |
+    -> (a, a) ∈ R
+
+    - Irreflexive 
+    |
+    -> (a, a) ∉ R
+
+    - Symmetric 
+    |
+    -> (a, b) ∈ R ⇒ (b, a) ∈ R
+
+    - Asymmetric 
+    |
+    -> (a, b) ∈ R ⇒ (b, a) ∉ R
+
+    - Antisymmetric 
+    |
+    -> ( (a, b) ∈ R ∧ (b, a) ∈ R ) ⇒ a = b
+
+    - Transitive 
+    |
+    -> ( (a,b) ∈ R ∧ (b, c) ∈ R ) ⇒ (a, c) ∈ R
+
+    - Connected
+    |
+    -> ( (a, b) ∈ R ∨ (b, c) ∈ R ) ⇒ a = b
+
+    - Serial
+    |
+    -> ∃b | (a, b) ∈ R
+
+
+    Definition: An equivalence relation is when a relation is reflexive,
+                symmetric and transitive.
+
+    Definition: A partial order is when a relation is reflexive, antisymmetric
+                and transitive.
+
+    Definition: A strict partial order is when a relation is irreflexive, asymmetric and transitive.
+
+    Definition: A linear order is a partial order if all elements are comparable.
+
+    
+    Let S = { a, b, c } and let R_i ⊆ S x S be a set of endorelations over
+    S with i ∈ N.
+
+    Reflexivity:
+        R_11 = { (a, a), (a, b), (c, c) } -> not reflexive
+        R_12 = { (a, a), (a, b), (c, c), (b, c) } -> not reflexive
+        R_13 = { (a, b) } -> irreflexive
+
+    Symmetry:
+        R_21 = { } -> symmetric, asymmetric, antisymmetric
+        R_22 = { (a, b), (b,a), (b, c) } -> not symmetric, not asymmetric, not antisymmetric ((a, b), (b, a) -> shouldn't show up as flipped pairs)
+        R_23 = { (a, b), (a, c), (b, c), (a, a), (b, b) } -> not symmetric, not asymmetric (because of (a, a) and (b, b)), antisymmetric
+
+    Transitivity:
+        R_31 = { (a, b), (c, a), (a, c), (b, c) } -> not transitive (because of (c, a))

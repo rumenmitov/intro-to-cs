@@ -1,0 +1,214 @@
+\documentclass{article}
+    \linespread{1.75}
+    \usepackage{amsmath}
+    \usepackage{amssymb}
+    \usepackage{listings}
+    \title{\vspace{-2cm}Introduction to Computer Science - Homework 4}
+    \author{Rumen Mitov}
+\begin{document}
+\maketitle
+
+\section*{Problem 4.1}
+\textbf{Definition 1:} \\
+A function, f:$X \rightarrow Y$, is injective $\iff \forall x,y \in X \mid f(x) = f(y) \implies x = y $. \\
+\textbf{Definition 2:} \\
+A function, f:$X \rightarrow Y$, is surjective $\iff \forall y \in Y, \exists x \in X \mid y = f(x) $. \\
+\textbf{Definition 3:} \\
+A function is bijective if it is injective and surjective. \\
+
+\subsection*{a)}
+\[
+    f(x) = x^3
+\]
+Proving injectivity by contrapositive:
+\[
+    x \neq y \implies f(x) \neq f(y)
+\]
+Since $x \neq y$, then it follows that $x^3 \neq y^3$, hence contrapositive is true. \\
+$\therefore f(x)$ is injective. $\blacksquare$ \\
+\newline
+Proving surjectivity by implications: \\
+We know $f(x) = x^3$ is continuous in the interval $(-\infty, \infty)$. \\
+Hence: \\
+\[
+    \forall y \in \mathbb{R}, \exists x \in \mathbb{R} \mid y = x^3
+\]
+$\therefore f(x)$ is surjective. $\blacksquare$ \\
+\newline
+$f(x)$ is injective and surjective, hence it is bijective. $\blacksquare$ \\
+
+\subsection*{b)}
+\[
+    f(x) = 2x + 1
+\]
+Proving injectivity by contrapositive:
+\[
+    x \neq y \implies f(x) \neq f(y)
+\]
+Since $x \neq y$, then it follows that $2x + 1 \neq 2y + 1$, hence contrapositive is true. \\
+$\therefore f(x)$ is injective. $\blacksquare$ \\
+\newline
+Proving surjectivity by implications: \\
+We know $f(x) = 2x + 1$ is continuous in the interval $(-\infty, \infty)$. \\
+Hence: \\
+\[
+    \forall y \in \mathbb{N}, \exists x \in \mathbb{N} \mid y = 2x + 1
+\]
+$\therefore f(x)$ is surjective. $\blacksquare$ \\
+\newline
+$f(x)$ is injective and surjective, hence it is bijective. $\blacksquare$ \\
+
+\subsection*{c)}
+\[
+    f(x) = \sin(x)
+\]
+Disproving injectivity by contradiction:
+\[
+    \forall x,y \in \mathbb{R} \mid f(x) = f(y) \implies x = y   
+\]
+Consider $f(x) = f(y) = 0$ which holds for $x = 0 \land y = \pi$. \\
+$\bot x \neq y$ \\
+$\therefore f(x)$ is not injective. $\blacksquare$ \\
+\newline
+Disproving surjectivity by implication:
+\[
+    \forall y \in \mathbb{R}, \exists x \in \mathbb{R} \mid y = f(x) 
+\]
+Since $f(x) = \sin(x)$ is bounded by $-1 \leq x \leq 1$, \\
+that means that 
+$\forall y \in \mathbb{R} \mid y < -1 \lor y > 1, \nexists y = f(x) = \sin(x)$. \\
+$\therefore f(x)$ is not surjective. $\blacksquare$ \\
+\newline
+Since $f(x)$ is neither injective nor surjective, it is also not bijective. $\blacksquare$ \\
+
+\section*{Problem 4.2}
+\subsection*{a)}
+\textbf{Show:} If $f: X \rightarrow Y$ and $g:Y \rightarrow Z$ are injective, then
+$g \circ f$ is injective. \\
+\textbf{Proof by implication:}
+We know that:
+\[
+    f(x) = f(y) \implies x = y
+\]
+We also know that:
+\[
+    g(z) = g(w) \implies z = w
+\]
+Hence:
+\[
+    g(f(x)) = g(f(y)) \implies f(x) = f(y) \implies x = y
+\]
+$\therefore g \circ f$ is injective. $\blacksquare$ \\
+
+\subsection*{b)}
+\textbf{Show:} If $f: X \rightarrow Y$ and $g:Y \rightarrow Z$ are surjective, then
+$g \circ f$ is surjective. \\
+\textbf{Proof by implication:} \\
+We know that:
+\[
+    \forall y \in Y, \exists x \in X \mid y = f(x)
+\]
+We also know that:
+\[
+    \forall z \in Z, \exists w \in Y \mid z = g(w)
+\]
+Hence:
+\[
+    \forall c \in Z, \exists b \in Y \land \forall b \in Y, \exists a \in X 
+    \mid c = g(b), b = f(a)
+\]
+\[
+    \implies \forall c \in Z, \exists a \in X \mid c = g(f(a))
+\]
+$\therefore g \circ f$ is surjective. $\blacksquare$ \\
+
+\subsection*{c)}
+\textbf{Show:} If $f: X \rightarrow Y$ and $g:Y \rightarrow Z$ are bijective, then
+$g \circ f$ is bijective. \\
+\textbf{Proof by implication:} \\
+Since $f(x)$ and $g(x)$ are bijective, then they are both injective and surjective. \\
+Hence from proofs in \textit{Problem 4.2 a)} and \textit{Problem 4.2 b)}, we know that
+$(g \circ f)(x)$ will also be injective and surjective. \\
+$\therefore g \circ f$ is bijective. $\blacksquare$ \\
+
+\section*{Problem 4.3}
+\subsection*{a)}
+\[
+    \forall m \in M \mid m \text{ is a movie that is showing in the cinema}
+\]
+\[
+    \forall c \in C \mid c \text{ is a person paying to watch a movie in the cinema}
+\]
+\[
+    \forall t \in T \mid t \text{ shows that a person paid to watch a movie}
+\]
+\[
+    \forall x \in X \mid x \text{ is a person selling tickets to the movies}
+\]
+\[
+    \forall k \in K \mid k \text{ is a person checking that a ticket is valid}
+\]
+\[
+    \forall d \in D \mid d \text{ is a drink that is available to thirsty customers}
+\]
+\[
+    \forall w \in W \mid w \text{ is someone who serves drinks to customers}
+\]
+
+\subsection*{b)}
+\[
+    R \subseteq C \times D \mid (c, d) \in R, \text{ customer getting a drink}
+\]
+\[
+    R \subseteq W \times D \mid (w, d) \in R, \text{ waiter serving a drink}
+\]
+\[
+    R \subseteq C \times M \mid (c, m) \in R, \text{ customer watching a movie}
+\]
+\[
+    R \subseteq X \times T \mid (x, t) \in R, \text{ cashier selling a ticket}
+\]
+\[
+    R \subseteq K \times T \mid (k, t) \in R, \text{ ticket taker checking a ticket}
+\]
+
+\subsection*{c)}
+Equivalence:
+\[
+    R \subseteq M \times M \mid (m_1, m_2) \in R, \text{ movies are directed by the same director}
+\]
+Partial Order:
+\[
+    R \subseteq D \times D \mid (d_1, d_2) \in R, \text{ drinks have the same ingredients}
+\]
+Strict Partial Order:
+\[
+    R \subseteq T \times T \mid (t_1, t_2) \in R, \text{ seat number is behind other seat number on tickets}
+\]
+Other:
+\[
+    R \subseteq C \times C \mid (c_1, c_2) \in R, \text{ customers are in a monogamous relationship}
+\]
+\[
+    R \subseteq K \times K \mid (k_1, k_2) \in R, \text{ two ticket takers working at the same time}
+\]
+
+\section*{Problem 4.4}
+\subsection*{c)}
+\begin{lstlisting}[language=Haskell, caption=Haskell type of zipWith function]
+    zipWith :: (a -> b -> c) -> [a] -> [b] -> [c]
+\end{lstlisting}
+It takes in a function (which takes in a variable of type \textbf{a} and type \textbf{b}, and returns type \textbf{c}),
+and two lists that hold elements of type \textbf{a} and \textbf{b}. \textit{zipWith} returns a list of elements of type \textbf{c}.
+
+\subsection*{d)}
+\begin{lstlisting}[language=Haskell, caption=Haskell type of isPrefixOf function]
+    isPrefixOf :: Eq a => [a] -> [a] -> Bool
+\end{lstlisting}
+It takes two lists, which must contain elements of variable type \textbf{a} that can be compared with the '==' operator.
+The function returns a boolean value.
+
+
+
+
+\end{document}

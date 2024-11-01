@@ -1,0 +1,97 @@
+* Convert -18.4 as a single precision floating point number
+    
+    ** Determine signed bit
+
+        -18.4 is negative → S = 1
+
+    ** Convert the integer part of 18.4 into binary
+
+        NOTE: Prepend here!!!
+
+        18 mod 2 = 0        0
+        9 mod 2 = 0         10
+        4 mod 2 = 0         010
+        2 mod 2 = 0         0010
+        1 mod 2 = 1         10010
+        0
+
+        18 = 0b10010
+        
+    ** Convert the fractional part of 18.4 into binary
+
+        NOTE: Append here!!!
+
+        0.4 * 2 = 0.8       0
+        0.8 * 2 = 1.6       01
+        0.6 * 2 = 1.2       011
+        0.2 * 2 = 0.4       0110
+        0.4 * 2 = 0.8       01100 → repetition
+        ...                 ...
+
+        0.4 = 0b0.0110...
+
+    ** Binary representation of 18.4
+
+        NOTE: Mentissa of float has 23 bits (since we are dropping the leading `1`, we can use 24 bits)
+        10010.0110011001100110011...
+
+    ** Normalization
+
+        1.0010011001100110011001... * 2^4 (dot moved 4 places to the left)
+
+    ** Bias exponent (determines whether exponent is negative)
+        
+        NOTE: Exponent is negative ⇔ exponent < 127
+
+        4 + 127 = 131
+
+    ** Exponent in binary
+        
+        131 mod 2 = 1       1
+        65 mod 2 = 1        11
+        32 mod 2 = 0        011
+        16 mod 2 = 0        0011
+        8 mod 2 = 0         00011
+        4 mod 2 = 0         000011
+        2 mod 2 = 0         0000011
+        1 mod 2 = 1         10000011
+        0
+
+        NOTE: If exponent in binary is shorter than 8 bits then you prepend necessary zeroes.
+        
+    ** Final answer
+
+        Signed Bit  |  Exponent  |  Mentissa (disregarding initial `1`)
+        ------------+------------+-------------------------------------
+            1       |  10000011  |        00100110011001100110011
+
+        NOTE: Signed Bit has 1 bit.
+              Exponent has 8 bits.
+              Mentissa has 23 bits.
+              For a float.
+
+    ** Now consider the answer from above as a 32-bit string. Convert it to hexadecimal.
+
+        *** Group 32-bit string into groups of 4 bits:
+
+            1100 0001 1001 0011 0011 0011 0011 0011
+
+        *** Calculate the hexadecimal number from each group:
+
+            1100 0001 1001 0011 0011 0011 0011 0011
+
+            12   1    9    3    3    3    3    3 
+
+            NOTE: Hexadecimal range from 0-9 and then from a-f
+
+            c    1    9    3    3    3    3    3
+
+
+        *** Final answer
+
+            0xc1933333
+            
+
+        
+
+

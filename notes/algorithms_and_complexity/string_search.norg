@@ -1,0 +1,184 @@
+* String Search
+
+Define finite set called 'alphabet', denoted by Σ.
+Let k be the number of elements in the set.
+
+*Definition* Kleene Closure is all the combinations of elements in Σ.
+             Includes the empty set. It is denoted by Σ*.
+
+The string we want to find, p, belongs to Σ and has length m. Let t be the
+text we will be searching in. It also belongs to Σ* and it's length is n. 
+
+_Note_ n >> m.
+
+We want to find the first occurance of p in t.
+
+_Example_
+
+Σ = { A, B, C }
+k = |S| = 3
+
+Σ* = { {}, {A}, {B}, {C}, {AB}, {AC}, {AA}, ..., {AAAAABBCCCCC} }
+
+t = AAAAABBCCCCC
+n = 8
+p = ABC
+m = 3
+
+Check (alignment):
+
+AAAAABBCCCCC
+ABC
+
+AAAAABBCCCCC
+A            → match
+
+AAAAABBCCCCC
+AB           → no match (shift alignment)
+
+AAAAABBCCCCC
+ A
+
+... repeat process until ...
+
+AAAAABBCCCCC
+    ABC     → all match
+
+
+_What happens when pattern does not match?_
+
+CCCC
+ABC
+ ABC
+  ABC → moved beyond text (terminate algorithm, pattern not found)
+
+*Definition* Best case complexity is how the algorithm performs at 
+             the best case scenario.
+
+*NOTE* This is called the Naive Search Algorithm.
+
+_Example_ 
+
+ABCAAABB
+ABC
+
+shifts = 0
+comparisons = m = 3
+
+
+*Definition* Worst case complexity is how the algorithm performs at the worst
+             case scenario.
+
+_Example_ Worst case (keeping pattern fixed)
+
+ABABABABABBC
+ABC
+...
+          ABC -> pattern not found
+
+
+_Example_ Worst case (keeping n and m fixed)
+
+AAAAAAAAAAAA
+AAC
+...
+          AAC → same as above, but we make more comparisons (we are
+                 comparing the first two chars twice each shift)
+
+Generalising the examples above:
+
+Worst case is when t uses a single symbol and p is comprised of (m-1) of that
+symbol and one different symbol.
+
+The number of comparisons will be roughly n*m. We do not need exact precision.
+
+Better algorithm? _Boyer-Moore: Bad character rule_
+- Same as before, but compare pattern from right to left
+- If character does not match, check if character is in beginning of pattern
+- If it is, shift so that the letter in the pattern and the letter in the 
+  text match
+- This is an optimization because we are skipping the first several
+  character comparisons
+- The speed of this algorithm does not depend on the length of the text,
+  but of the size of the alphabet. 
+
+_Example_
+ABCABABBA
+AAC       → no B in our pattern, shift by m = 3 characters
+  AAC
+...
+       
+
+How to optimize the Boyer-Moore?
+- Use pre-caculated table
+- The table is based on the pattern
+- The table takes two inputs: the pattern and the position of the 
+  current character we are comparing
+- The table outputs a number that is the amount of skips we have to do
+- This table is called a lookup table
+
+_Example_
+
+p = NEED
+
+_Lookup table_
+
+@table
+|---||---|---|---|---|
+| D || 0 | 1 | 2 | - |
+|---||---|---|---|---|
+| E || 0 | - | - | 0 |
+|---||---|---|---|---|
+| N || - | 0 | 1 | 2 |
+|---||---|---|---|---|
+| * || 0 | 1 | 2 | 3 |
+|---||---|---|---|---|
+@end
+         
+
+_Boyer-Moore: Good suffix rule_
+
+Three cases:
+~ Skip to another match of the suffix in pattern
+~ Sip to match of prefix of pattern
+~ Skip to end of pattern
+
+_First case:_
+t = FINDANEEDLEINAHAYSTACK
+p = NEEDUNEED
+
+FINDANEEDLEINAHAYSTACK
+needUNEED
+     needuneeD
+...
+
+suffix, s = NEED
+
+_Second case:_
+t = FINDANEEDLEINAHAYSTACK
+p = EDISUNEED
+
+FINDANEEDLEINAHAYSTACK
+edisUNEED
+
+s = NEED
+suffix of suffix = ED, this matches prefix ED
+
+FINDANEEDLEINAHAYSTACK
+       edisuneeD
+
+_Third case:_
+t = FINDANEEDLEINAHAYSTACK
+p = FOODINEED
+
+FINDANEEDLEINAHAYSTACK
+FOODINEED
+
+s = NEED
+
+FINDANEEDLEINAHAYSTACK
+         foodineeD
+
+  _Boyer-Moore Rules Combined:_
+- When rules mismatch the number of skips, follow the rule that maximizes
+  the amount of skips

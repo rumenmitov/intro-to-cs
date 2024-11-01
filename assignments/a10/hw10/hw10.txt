@@ -1,0 +1,81 @@
+Problem Sheet #10
+----------------
+
+* Rumen Mitov *
+
+
+* Problem 10.2
+
+** a)
+    
+    2e → 0010 1110
+    b0 → 1011 0000
+    d4 → 1101 0100
+    e0 → 1110 0000
+    2f → 0010 1111
+    6f → 0110 1111
+    4f → 0100 1111
+    2e → 0010 1110
+    91 → 1001 0001
+    4e → 0100 1110
+    cb → 1100 1011
+    00 → 0000 0000
+    00 → 0000 0000
+    00 → 0000 0000
+    06 → 0000 0110
+    01 → 0000 0001
+
+
+** b)
+
+    001 0 1110      → LOAD 14                  » load data in cell 14 into accumulator (acc = m[14])
+    101 1 0000      → EQUAL #0                 » if equal to 0, skip next cell (acc == 0 skip)
+    110 1 0100      → JUMP #4                  » jump to 4th cell (pc = 4)
+    111 0 0000      → HALT                     » exit program (halt)
+    001 0 1111      → LOAD 15                  » load data in cell 15 into accumulator (acc = m[15])
+    011 0 1111      → ADD 15                   » add data in cell 15 to number in accumulator (acc += m[15])
+    010 0 1111      → STORE 15                 » store data in accumulator into cell 15 (m[15] = acc)
+    001 0 1110      → LOAD 14                  » load data in cell 14 into accumulator (acc = m[14])
+    100 1 0001      → SUB #1                   » decrement data in accumulator by 1 (acc -= 1)
+    010 0 1110      → STORE 14                 » store data in accumulator into cell 14 (m[14] = acc)
+    110 0 1011      → JUMP 11                  » jump to cell determined by contents of cell 11 (pc = m[11])
+    000 0 0000      → INVALID CODE (DATA #0)   » number stored in cell is 0
+    000 0 0000      → INVALID CODE (DATA #0)   » number stored in cell is 0
+    000 0 0000      → INVALID CODE (DATA #0)   » number stored in cell is 0
+    000 0 0110      → INVALID CODE (DATA #6)   » number stored in cell is 6
+    000 0 0001      → INVALID CODE (DATA #1)   » number stored in cell is 1
+
+
+** c) 
+    
+    ```rust
+    fn main() {
+        let mut m :[u8; 16] = 
+            [14, 0, 4, 0, 15, 15, 15, 14, 1, 14, 11, 0, 0, 0, 6, 1];
+
+        let mut acc = m[14];
+
+        loop {
+            if acc == 0 {
+                break;
+            }
+
+            acc = m[15];
+            acc += m[15];
+
+            m[15] = acc;
+
+            acc = m[14];
+            acc -= 1;
+            m[14] = acc;
+        }
+    }
+    ```
+
+    Full code (i.e. with output) can be found in ./p10_2c/src/main.rs
+
+
+** d) 
+    
+    The program will go through four more loops since the iterator's value 
+    is now 10. This means that the final value of cell 15 will be 1024.

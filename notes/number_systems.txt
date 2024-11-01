@@ -1,0 +1,193 @@
+* Number systems
+
+        * Natural Numbers
+            (a_n, a_(n-1), ..., a_1, a_0) = ∑(a_k)(b^k), k < n
+
+            e.g. 123 = 1 * 10^2 + 2 * 10^1 + 3 * 10^0
+
+
+        * Conversions
+
+            e.g. Decimal to binary
+                n = 123
+                s = ""
+
+                123 mod 2 = 1
+                ⇒ b = 1, n → (int) 123 / 2 = 61
+                ⇒ s = "1"
+
+                61 mod 2 = 1
+                ⇒ b = 1, n → (int) 61 / 2 = 30
+                ⇒ s = "11"
+
+                30 mod 2 = 0
+                ⇒ b = 0, n = 15
+                ⇒ s = "011"
+
+                15 mod 2 = 1
+                ⇒ b = 1, n = 7
+                ⇒ s = "1011"
+
+                7 mod 2 = 1
+                ⇒ b = 1, n = 3
+                ⇒ s = "11011"
+
+                3 mod 2 = 1
+                ⇒ b = 1, n = 1
+                ⇒ s = "111011"
+
+                1 mod 2 = 1
+                ⇒ b = 1, n = 0
+                ⇒ s = "1111011"
+
+                s = "1111011"
+
+            e.g. Binary to decimal
+                s = 1111011, n = 1
+                s = 111011, n = 3
+                s = 11011, n = 7
+                s = 1011, n = 15
+                s = 011, n = 30
+                s = 11, n = 61
+                s = 1, n = 123
+
+                n = 123
+
+            NOTE: The conversions between the number systems is a bijective mapping.
+
+            converting from binary to hexadecimal and back
+
+        * Prefix Notation
+            
+            0x → hexadecimal
+            0o → octal
+            0b → binary
+
+        * Fixed precision
+            
+            bits |    name
+            -----+-------------
+            4    | nibble
+            8    | octet / byte
+            16   | uint16
+            32   | uint32
+            64   | uint64
+
+
+    * Integer Numbers
+
+        In binary, the first bit is used for tracking the sign of the integer.
+        This only works because we have a fixed number range.
+
+        * Calculations
+
+            e.g. 2 - 6 = - 4 (4-bit binary, b-complement)
+
+            2 = 0b0010
+            6 = 0b0110
+            
+            -6 = 0b1001 // (b-1) complement, add one
+               = 0b1010 // b complement
+
+                 1001
+               + 0001
+                   1
+                 ----
+                 1010
+
+
+             0010 
+           + 1011
+             ----
+             1011
+
+
+             e.g. 125 - 123 (6 digit ternary numbers, b-complement)
+
+             n = 125    s = 2
+             n = 41     s = 22
+             n = 13     s = 122
+             n = 4      s = 1122
+             n = 1      s = 11122
+             n = 0
+
+             We want 6-digit ternary notation, so 
+
+             125 = 0t011122
+
+             n = 123 = 125 - 2
+
+             So: 123 = 0t011120
+
+             -123 = 0t211102 ((b-1) complement)
+            
+                0t211102
+              + 0t000001
+                      1
+                --------
+                0t211110 (b-complement)
+
+
+            So:
+
+               0t011122
+             + 0t211110
+                11111   
+               --------
+               0t000002
+
+               NOTE: We discard the overflowing 1.
+
+
+        * Rational Numbers
+
+        * Real Numbers
+
+            Floating point numbers act as approximations for real numbers.
+            
+            e.g. 123 = + 1.23 * 10^2
+                     = 1.23e2
+
+            NOTE: In above example sign is '+', mantissa is '1.23', base is '10', and exponent is '2'.
+
+            NOTE: Main feature, is that the bigger the exponent there is a loss of precision (not needed),
+                  and the smaller it gets, the higher the precision.
+
+            If you want to use a binary base, you have to convert your mantissa to base 2.
+
+            e.g. Conversion from decimal to binary
+
+                12.3 = 1 * 10^1 + 2 * 10^0 + 3 * 10^(-1)
+
+                12 = 0b1100 = 1 * 2^3 + 1 * 2^2 + 0 * 2^(1) + 0 * 2^(0) + x * 2^(-1) + ...
+
+                0b0.1 is 0.5 in decimal
+                0b0.01 is 0.25 in decimal
+
+                
+                f = 0.3     s =
+                f = 0.6     s = 0
+                f = 1.2     s = 01
+                → fractional part is 2
+
+                f = 0.4     s = 010
+                f = 0.8     s = 0100
+                f = 1.6     s = 01001
+                → fractional part is 6
+
+                f = 1.2     s 010011 → we already had f = 1.2, so the binary fraction will repeat itself in a cycle
+                .
+                .
+                .
+
+
+                Hence, 12.3 = 1100.010011...
+                
+                Now we have to normalize:
+
+                            = 1.100010011... * 2^3
+
+                NOTE: Unless float is 0, the first digit will always be 1, so we can drop it.
+
+                NOTE: Mentissa signifies precision, exponent specifies range.
+

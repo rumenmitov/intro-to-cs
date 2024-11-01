@@ -1,0 +1,176 @@
+\documentclass{article}
+    \linespread{1.75}
+    \usepackage{amsmath}
+    \usepackage{amssymb}
+    \usepackage{listings}
+    \title{\vspace{-2cm}Introduction to Computer Science - Homework 3}
+    \author{Rumen Mitov}
+\begin{document}
+\maketitle
+
+\section*{Problem 3.1}
+\underline{Show:} \[ A \cap (B \cup C) = (A \cap B) \cup (B \cap C)\] \\
+\underline{Proof by equivalences:} \\
+\textit{L.H.S.} \\
+We know from definition: \\
+\begin{equation}
+\forall x \in (B \cup C) \mid x \in B \lor x \in C
+\end{equation}
+Also: \\
+\begin{equation}
+\forall x \in (A \cap X) \mid x \in A \land x \in X
+\end{equation}
+Hence, substituting X for ($B \cup C$) in (\textit{2}): \\
+\[
+\forall x \in (A \cap (B \cup C)) \mid x \in A \land x \in (B \cup C)
+\]
+Using what we know from (\textit{1}): \\
+\[
+\forall x \in (A \cap (B \cup C)) \mid x \in A \land (x \in B \lor x \in C)
+\]
+\textit{R.H.S.} \\
+Using definitions (\textit{1}) and (\textit{2}): \\
+\[
+\forall x \in ((A \cap B) \cup (A \cap C)) \mid (x \in A \land x \in B) \lor (x \in A \land x \in C)
+\]
+We can tell from the above statement that $\forall x \in A$. Hence, the following simplification: \\
+\[
+\forall x \in ((A \cap B) \cup (A \cap C)) \mid x \in A \land (x \in B \lor x \in C)
+\]
+\textit{L.H.S.} and \textit{R.H.S} match. \\
+$\therefore A \cap (B \cup C) = (A \cap B) \cup (B \cap C)$ is true. $\blacksquare$ \\
+
+\section*{Problem 3.2}
+\subsection*{a)}
+\underline{Prove or disprove:} \[(A \cap B) \times (C \cap D) = (A \times C) \cap (B \times D) \]
+\underline{Proof by equivalence:} \\
+Consider set \textbf{A} which contains elements $\{ a_1, a_2, \dots, a_n \}$, and set \textbf{B} = $\{ b_1, b_2, \dots, b_m \}$. \\
+Now let $A \cap B = \{ x_1, x_2, \dots, x_k \}$. \\
+Similarly, set \textbf{C} which contains elements $\{ c_1, c_2, \dots, c_p \}$, and set \textbf{D} = $\{ d_1, d_2, \dots, d_q \}$. \\
+Now let $C \cap D = \{ y_1, y_2, \dots, y_l \}$. \\
+\textit{L.H.S.} \\
+\[
+    \forall x_i \in (A \cap B) \mid \forall y_i \in (C \cap D) \mid (A \cap B) \times (C \cap D) = \{ (x, y), (x_2, y_2), \dots, (x_k, y_l) \}
+\]
+\textit{R.H.S} \\
+\[
+    \forall a_i \in A | \forall c_i \in C \mid (A \times C) = \{ (a_1, c_1), (a_1, c_2), \dots (a_2, c_1), \dots, (a_n, c_p) \}
+\]
+Similarly: \\
+\[
+    \forall b_i \in B | \forall d_i \in D \mid (B \times D) = \{ (b_1, d_1), (b_1, d_2), \dots (b_2, d_1), \dots, (b_m, d_q) \}
+\]
+Finally: \\
+\[
+    (A \times C) \cap (B \times D) = \{ (x, y), (x_2, y_2), \dots, (x_k, y_l) \}
+\]
+This is because $\forall x \in (A \cap B) \mid \forall y \in (C \cap D) \mid (x, y)$ are the only tuples that will belong to both $(A \times C) \land (B \times D)$,
+since \textit{x} belongs to both \textbf{A} and \textbf{B} and \textit{y} belongs to both \textbf{C} and \textbf{D}. \\
+Both \textit{L.H.S.} and \textit{R.H.S.} match. \\
+$\therefore (A \cap B) \times (C \cap D) = (A \times C) \cap (B \times D) \text{ is true. } \blacksquare $ \\
+
+\subsection*{b)}
+\underline{Prove or disprove:} \[(A \cup B) \times (C \cup D) = (A \times C) \cup (B \times D) \]
+\underline{Proof by equivalence:} \\
+Consider set \textbf{A} which contains elements $\{ a_1, a_2, \dots, a_n \}$, and set \textbf{B} = $\{ b_1, b_2, \dots, b_m \}$. \\
+Now let $A \cup B = \{ x_1, x_2, \dots, x_k \}$. \\
+\underline{NOTE:} $A \cup B$ contains all elements in \textbf{A} and all elements in \textbf{B}.\\
+Similarly, set \textbf{C} which contains elements $\{ c_1, c_2, \dots, c_p \}$, and set \textbf{D} = $\{ d_1, d_2, \dots, d_q \}$. \\
+Now let $C \cup D = \{ y_1, y_2, \dots, y_l \}$. \\
+\underline{NOTE:} $C \cup D$ contains all elements in \textbf{C} and all elements in \textbf{D}.\\
+\textit{L.H.S.} \\
+\[
+    \forall x_i \in (A \cup B) \mid \forall y_i \in (C \cup D) \mid (A \cup B) \times (C \cup D) = \{ (x, y), (x_2, y_2), \dots, (x_k, y_l) \}
+\]
+\textit{R.H.S} \\
+\[
+    \forall a_i \in A | \forall c_i \in C \mid (A \times C) = \{ (a_1, c_1), (a_1, c_2), \dots (a_2, c_1), \dots, (a_n, c_p) \}
+\]
+Similarly: \\
+\[
+    \forall b_i \in B | \forall d_i \in D \mid (B \times D) = \{ (b_1, d_1), (b_1, d_2), \dots (b_2, d_1), \dots, (b_m, d_q) \}
+\]
+Finally: \\
+\[
+    (A \times C) \cup (B \times D) = \{ (x, y), (x_2, y_2), \dots, (x_k, y_l) \}
+\]
+This is because $\forall x \in (A \cup B) \mid \forall y \in (C \cup D) \mid (x, y)$ are the in fact all the tuples that will belong to $(A \times C) \cup (B \times D)$,
+since \textit{x} represents all the elements in \textbf{A} and all the elements in \textbf{B}. 
+Similarly, \textit{y} represents all the elements in \textbf{C} and all the elements in \textbf{D}. \\
+Both \textit{L.H.S.} and \textit{R.H.S.} match. \\
+$\therefore (A \cup B) \times (C \cup D) = (A \times C) \cup (B \times D) \text{ is true. } \blacksquare $ \\
+
+\section*{Problem 3.3}
+\textbf{Definition 1:} Relation, R, is \textit{reflexive} $\iff \forall x \in X \mid (x, x) \in R$. \\
+\textbf{Definition 2:} Relation, R, is \textit{symmetric} $\iff \forall x, y \in X \mid (x, y) \in R \implies (y, x) \in R$. \\
+\textbf{Definition 3:} Relation, R, is \textit{transitive} $\iff \forall x, y, z \in X \mid ((x, y) \in R \text{ } \land \text{ } (y, z) \in R) \implies (x, z) \in R$. \\
+\subsection*{a)}
+\[
+    R = \{ (a, b) \mid a, b \in \mathbb{Z} \text{ } \land \text{ } \mid a - b \mid \leq 3 \}
+\]
+\underline{Reflexivity:} \\
+\[
+    (a, a) \implies \mid a - a \mid = 0 \leq 3 \implies (a, a) \in R
+\]
+\underline{Symmetry:} \\
+\[
+    (a, b) \implies \mid a - b \mid = \mid b - a \mid \implies ((a, b) \in R \implies (b, a) \in R)
+\]
+\underline{Transitivity:} \\
+Let $\mid a - b \mid = d_1$ and $\mid b - c \mid = d_2$. \\
+We assume the $\{ d_1, d_2 \} \in R$.
+However, if $d_1 + d_2 > 3$ then:
+\[
+    (a, c) \implies \mid a - c \mid > 3 \implies (a, c) \notin R
+\]
+Hence, R is \textbf{reflexive}, \textbf{symmetric}, but \textbf{not transitive}. \\
+
+\subsection*{b)}
+\[
+    R = \{ (a,b) \mid a, b \in \mathbb{Z} \text{ } \land \text{ } (a \mod{10}) = (b \mod{10}) \}
+\]
+\underline{Reflexivity:} \\
+\[
+    (a, a) \implies a \mod{10} = a \mod{10} \implies (a, a) \in R
+\]
+\underline{Symmetry:} \\
+\[
+    (a, b) \implies a \mod{10} = b \mod{10} \iff b \mod{10} = a \mod{10} \implies ((a, b) \in R \implies (b, a) \in R)
+\]
+\underline{Transitivity:} \\
+Assume $\{ (a, b), (b, c) \} \in R$. \\
+Let $a = 10p \cdot b, p \in \mathbb{N}$ and $b = 10q \cdot c, q \in \mathbb{N}$. \\
+Then: \\
+\[
+    a = 10p \cdot (10q \cdot c) = 100pq \cdot c, pq \in \mathbb{N}
+\]
+Hence: \\
+\[
+    (a, c) \implies a \mod{10} = 100pq \cdot c = c \mod{10} \implies (a, c) \in R
+\]
+Hence, R is \textbf{reflexive}, \textbf{symmetric}, and \textbf{transitive}. \\
+
+\section*{Problem 3.4}
+\subsection*{a)} 
+The type signature of the \textit{zip} function is: \\
+\begin{lstlisting}[]
+zip :: [a] -> [b] -> [(a, b)]
+\end{lstlisting}
+The function receives two variables. The types of the variables can be anything (as shown by the type variables 
+\textbf{a} and \textbf{b}). The type listing shows exactly three types: variable type \textbf{a}, 
+variable type \textbf{b} and a tuple combining the two types \textbf{a} and \textbf{b}. \\
+\underline{NOTE:} The function could take in less types if \textbf{a} and \textbf{b} were of the same type. \\
+
+\subsection*{b)}
+\textit{2 + 3} is a \textbf{Num a =$>$ a}, meaning it is an expression of any numerical types
+(e.g. \textbf{Integers}, \textbf{Floats}), and it returns the same type of value it received. \\
+\textit{2 + 9 `div` 3} is a \textbf{Integral a =$>$ a}, meaning it is an expression 
+that supports only \textbf{Integers}, and it returns the same type of value it received. \\
+\textit{2 + 9 / 3} is a \textbf{Fractional a =$>$ a}, meaning it is an expression that
+takes in non-\textbf{Integral} numbers (e.g. \textbf{Floats}, \textbf{Doubles}), and 
+it returns the same type of value it received. \\
+\textit{2 + sqrt 9} is a \textbf{Floating a =$>$ a}, meaning it is an expression
+that takes in either \textbf{Floats} or \textbf{Doubles}, and it returns the same type of value it receives. \\
+
+
+\end{document}

@@ -1,0 +1,25 @@
+* Software Specifications
+  *Definition* The Hoare triple is a state that satisisfies precondition P, executing
+             a termination program C that results in postcondition Q.
+
+_Notation_{P} C {Q}
+  [P] C [Q] → program terminates (total correctness)
+
+e.g. {X = 1} X := X + 1 {X = 2} → here the specification covers only one case (X = 1)
+
+Example using a more general case (using auxiliary variable n):
+{X = n} X := X + 1 {X = n + 1}
+
+** Hoare Programming Language
+   Assignments: V := E
+   Skip: SKIP
+   Command sequence: C_1; C_2; ...; C_n
+   Conditionals: IF S THEN C_1 ELSE C_2 FI
+   Loop: WHILE S DO C OD
+
+   _Example_
+
+   { X = e_1 ∧ Y = e_2 } R := X; X := Y; Y := R { X = e_2 ∧ Y = e_1 }
+
+    _NOTE_ Imperative programming takes a subset, P, of all possible sates
+           through the command sequence, it maps P onto another subset, Q.

@@ -1,0 +1,29 @@
+For DNF:
+
+    Each row in truth table is an ∧ between the variables when they are truthy,
+    then all of these are combined by ∨ 
+
+| A | B | C | F |
+|---+---+---+---|
+| 0 | 0 | 0 | 1 | → m_1
+| 0 | 0 | 1 | 0 |
+| 0 | 1 | 0 | 0 |
+| 0 | 1 | 1 | 1 | → m_4
+| 1 | 0 | 0 | 1 | → m_5
+| 1 | 0 | 1 | 0 |
+| 1 | 1 | 0 | 1 | → m_7
+| 1 | 1 | 1 | 0 |
+
+
+In DNF:
+
+    ()
+
+
+m1 m4 m5 m7 = (A and C)
+
+
+For CNF:
+
+    Each row in truth table is an ∨ between the varibles when they are false,
+    then all of these are combined by ∧

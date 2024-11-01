@@ -1,0 +1,7 @@
+* Sequential Digital Circuits
+
+_Clock cycles_ help prevent unstable system when piping from input
+registers to operator circuits.
+- Set time in which operations occur.
+
+    

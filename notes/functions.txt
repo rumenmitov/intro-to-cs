@@ -1,0 +1,48 @@
+* Functions
+    
+    Definition: A relation, f, is called a partial function ⇔ at most one y, ∀x | (x, y) ∈ f.
+
+        e.g. R = { (a, b), (b, c), (a, c), (c, a) } -> not a partial function (because a has two outputs: b and c)
+        e.g. R = { (a, b), (b, c), (c, a) } -> partial function
+
+    Definition: A total function is when there is exactly one y for (x, y) ∈ f.
+
+        e.g. R = { (a, b), (c, a) } -> partial function (not defined for x = b)
+        e.g. R = { (a, b), (b, c), (c, a) } -> total function
+
+    Definition: f ⊆ X x Y and f is total, we say that f: X -> Y
+
+    Definition: A function, f:X→Y, is injective ⇔ ∀x ∈ X, x is mapped by at most one element of domain:
+                f(a) = f(b) ⇒ a = b
+
+    Definition: A function, f:X→Y, is surjective ⇔ ∀x ∈ X, is mapped by at least one element of domain:
+                ∀y ∈ Y, ∃x ∈ X | f(x) = y
+    
+    Definition: A function is bijective when it is surjective and injective (i.e. every element in codomain is
+                mapped to exactly one element in domain).
+
+        e.g. 
+            X = {a, b, c}
+            Y = {1, 2, 3}
+
+            f = { (a,3), (b, 1), (c, 1) } -> partial function
+            f = { (a,3), (b, 1), (c, 1), (c, 2) } -> not a function (every x has at most one y)
+
+            f = { (a, 1), (b, 2) } -> injective (not all elements of codomain have to be mapped)
+            f = { (a, 1), (b, 1) } -> not injective ('1' is mapped twice > once)
+
+            f = { (a, 1), (b, 2), (c, 3) } -> surjective and injective = bijective
+
+    Definition: Function composition is when f:A→B and g:B→C is defined by g ◯ f:A→C.
+
+    Definition: Function restriction f:A→B and C ⊆ A. Then we call the function 
+                f|c = { (c, b) ∈ f | c ∈ C } the restriction of f to c.
+
+    Definition: Lambda functions are nameless functions in the form { (x, y) ∈ X x Y | y = E } and can be
+                written as λx ∈ X | E.
+
+    e.g. f(x) = x^2 as λx ∈ N | x^2
+    e.g. f(x + y) = x + y as λ(x, y) ∈ N x N | x + y
+
+    NOTE: Lambda functions only take in one argument. If you need more inputs, you use currying:
+        - arguments get fixed into the function one by one, each time returning another function with the argument fixed.

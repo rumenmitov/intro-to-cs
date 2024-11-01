@@ -1,0 +1,66 @@
+* Boolean Complexity
+
+    Definition: implicant
+    Definition: prime implicant
+    Definition: essential prime applicant
+
+** Quine McClusky Algorithm
+
+    1) Find all impllicants (from truth table)
+    2) Combine non-prime implicants until there are only prime implicants
+        - classify and sort the positive literals
+        -- compare one-positive literals with two-positive literals , n with n+1 literals and so on
+        NOTE: we don't compare elements of same group because we know they will differ
+    3) Eliminating non-prime implicants
+
+
+    link to cnf_and_dnf.txt
+
+    NOTE: comaprisons can differ only by 1 (hence max 1 '-')
+
+    *m_1  001  → m_1,5  -01  NOTE: cannot continue comparing because m_1,5,7 the '-' doesn't match and the same for m_4,5,7
+    *m_4  100  → m_4,5  10-
+
+    *m_5  101  → m_5,7  1-1
+    *m_7  111  → no group to compare with
+
+    NOTE: * means implicant has been used, whatever hasn't is a prime
+    NOTE: in the second comparison, nothing has been used, so all three are primes
+    
+    Implicants m_1 m_4 m_5 m_7
+    Prime implicants m_1,5 m_4,5 m_5,7 
+
+
+    Finding essential primes (when a prime does not appear in any column):
+
+        | m_1,5 | m_4,5 | m_5,7
+    ----+-------+-------+------
+    m_1 |   x   |       |  
+    m_4 |       |   x   |   
+    m_5 |   x   |   x   |   x
+    m_7 |       |       |   x
+         essential
+         for m_1   
+                
+                essential 
+                for m_4    
+
+                         essential
+                         for m_7
+
+    No essentials here, so find the minimal coverage
+    
+
+    F = m_1,5 + m_4,5 + m_5,7 = (¬B ∧ C) ∨ (A ∧ ¬B) ∨ (A ∧ C)
+                              = ¬B ∧ (A ∨ C) ∨ (A ∧ C) → not allowed because it has turned to CNF
+
+
+
+
+
+    NOTE: F has more truths → DNF will be longer, and vice versa
+
+
+
+
+

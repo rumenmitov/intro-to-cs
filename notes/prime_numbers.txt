@@ -1,0 +1,72 @@
+* Prime Numbers
+
+    F is true if (ABCD)_2 represents a prime number.
+
+    | A | B | C | D | F |
+    |---+---+---+---+---|
+    | 0 | 0 | 0 | 0 | 0 |
+    | 0 | 0 | 0 | 1 | 0 |
+    | 0 | 0 | 1 | 0 | 1 |
+    | 0 | 0 | 1 | 1 | 1 |
+    | 0 | 1 | 0 | 0 | 0 |
+    | 0 | 1 | 0 | 1 | 1 |
+    | 0 | 1 | 1 | 0 | 0 |
+    | 0 | 1 | 1 | 1 | 1 |
+    | 1 | 0 | 0 | 0 | 0 |
+    | 1 | 0 | 0 | 1 | 0 |
+    | 1 | 0 | 1 | 0 | 0 |
+    | 1 | 0 | 1 | 1 | 1 |
+    | 1 | 1 | 0 | 0 | 0 |
+    | 1 | 1 | 0 | 1 | 1 |
+    | 1 | 1 | 1 | 0 | 0 |
+    | 1 | 1 | 1 | 1 | 0 |
+
+    DNF:
+    F = m_2 + m_3 + m_5 + m_7 + m_11 + m_13
+      = (¬A ∧ ¬B ∧ C ∧ ¬D) ∨ ...
+
+    Cost(F) = 6 * 3 + 5 = 23
+
+    Positive literals:
+
+    m_2 | 0010 | * | m_2,3 | 001-
+    ----|------|---|-------|-------
+    m_3 | 0011 | * | m_3,7 | 0-11
+                   | m_3,11| -011
+    m_5 | 0101 | * | m_5,7 | 01-1
+                   | m_5,13| -101
+    ----|------|---|-------|-------
+    m_7 | 0111 | * |
+    m_11| 1011 | * | 
+    m_13| 1101 | * |
+
+    → no more comparisons possible
+
+    Prime implicants: m_2,3 m_3,7 m_3,11 m_5,7 m_5,13
+
+    
+    |        | m_2 | m_3 | m_5 | m_7 | m_11 | m_13
+    |--------+-----|-----|-----|-----|------|------
+    | m_2,3  |  @     x                              → essential for m_2
+    | m_3,7  |        x           x
+    | m_3,11 |        x                  @           → essential for m_11
+    | m_5,7  |              x     x
+    | m_5,13 |              x                   @    → essential for m_13
+
+    x → what is covered by implicants
+    @ → what is covered by essential implicants
+
+
+    Essential prime implicants: m_2,3 m_3,11 m_5,13
+    NOTE: m_7 is not covered by essential implicants!
+        |
+        → let's pick the smallest number of operations
+        → here let's take m_3,7
+
+    Solution: F = m_2,3 + m_3,11 + m_5,13 + m_3,7
+
+    cost ⇒ operations (look at the bool rep and see how many variables are being compared; then add the amount of ∨)
+    Cost(F) = 2*4 + 3 = 11 
+    
+
+

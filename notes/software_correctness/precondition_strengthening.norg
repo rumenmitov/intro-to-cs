@@ -1,0 +1,6 @@
+* Precondition Strengthening
+P ⇒ P', means P is a subset of P' because all states in P are in P' but the reverse is not true
+
+Hence:
+
+(P ⇒ P' ∧ {P'} C {Q}) ⇒ {P} C {Q}

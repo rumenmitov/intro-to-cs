@@ -1,0 +1,39 @@
+* Discrete Maths
+
+    Definition: A proposition is a statement that is either true or false.
+
+    Definition: An axiom is a proposition that is taken to be true.
+
+    Definition: Peano axioms for natuaral numbers:
+        1. 0 is a natural number
+        2. Every natural number has a successor
+        3. 0 is not a successor of any natural number
+        4. If the successor of x equals the successor of y, then x = y
+        5. If a statement is true for the natural number 0, and it is true for a 
+           natural number, then it is also true for the successor of that number,
+           then it is true for every natural number
+
+    Definition: An important true proposition is called a theorem.
+
+    Definition: A lemma is a preliminary true proposition useful for providing
+                userful fo proving theorems.
+
+    Definition: A corollary is a true proposition that follows in just a few
+                logical steps from a theorem.
+
+    Definition: A conjecture is a proofless proposition, which is believed to be
+                true.
+
+    Definition: A predicate is a statement that may be true or false depending on
+                the values of its variables. 
+
+    Definition: A mathematical proof is a proposition of logical deductions from
+                a base set of axioms that concludes with the proposition in question.
+
+    Proof Techniques:
+        - Derivation (P ⇒ K)
+        - Contrapositive (P ⇒ Q by ¬Q ⇒ ¬P)
+        - Equivalences (P ⇔ Q by P ⇒ Q and Q ⇒ P)
+        - Cases
+        - Contradiction (¬P is false ⇒ P is true)
+        - Induction 

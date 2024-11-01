@@ -1,0 +1,173 @@
+Problem Sheet #12
+----------------
+
+* Rumen Mitov *
+
+
+* Problem 12.1
+
+** a) b)
+
+    <formula> ::= <constant> | <variable> | <opening_parenthesis> <formula> <operator> <formula> <closing_parenthesis> | <formula> "'"
+    <operator> ::= "+" | " +" | "+ " | " + " | "*" | " *" | "* " | " * "
+    <closing_parenthesis> ::= ")" | " )"
+    <opening_parenthesis> ::= "(" | "( "
+    <variable> ::= "X" <number>
+    <number> ::= <digit> | <digit> <number>
+    <digit> ::= <constant> | [2-9]
+    <constant> ::= "0" | "1"
+
+
+* Problem 12.2
+
+** a)
+
+        .global main
+        .text                   # text segment (holding machine code)
+
+    main:                       # called by C library's startup code
+        addi sp, sp, -16        # allocate stack frame
+        sd ra, 8(sp)            # save return address
+        sd s0, 0(sp)            # save frame pointer
+        addi s0, sp, 16         # establish new frame point
+        jal fork                # create a new child process using C function fork
+        bne a0, zero, done      # check if a0 is not equal to 0 (i.e. if the process is a parent); if condition is true go to done
+        jal fork                # create a new child process using C function fork
+        bne a0, zero, done      # check if a0 is not equal to 0 (i.e. if the process is a parent); if condition is true go to done 
+        jal fork                # create a new child process using C function fork
+        la a0, date             # set initial argument to value of date
+        mv a1, zero             # set second argument to 0
+        jal execvp              # call C function to execute a command
+
+    done:                       # called when by a process
+        la a0, bye              # load the contents of bye into first argument
+        jal puts                # call C function to write to stdout
+        mv a0, zero             # set initial argument to 0
+        ld ra, 8(sp)            # restore return address
+        ld s0, 0(sp)            # restore frame pointer
+        addi sp, sp, 16         # deallocate stack frame
+        ret                     # return to C library code
+
+        .data                   # data segment (holding data)
+
+    bye:                        # label that holds variable data
+        .asciz "bye"            # null-terminated string
+
+    date:                       # label that holds variable data
+        .asciz "date"           # null-terminated string
+
+** b)
+
+
+p_1 ---------+-----------------------------------------------"bye"
+             |
+             + p_2 ---+-------------------------------"bye"
+                      |
+                      + p_3 ---+--------------+
+                               |              |
+                               |              + p_6 date
+                               |
+                               + p_4 ---+
+                                        |
+                                        + p_5 date
+                      
+
+** c)
+
+    Output:
+        
+        Thu Nov 30 06:05:38 PM CET 2023 
+        Thu Nov 30 06:05:38 PM CET 2023 
+        bye
+        bye
+
+
+    Explanation:
+
+       The original process (p_1) is forked, so a0 of p_1 becomes the pid of
+       p_2. After all the child processes terminate p_1 will execute the 
+       done section, printing "bye".
+
+       p_2 will not make the jump as its a0 is 0. After p_2 is forked its a0 will
+       become the pid of p_3. After all the child process terminate p_2 will execute the
+       done section, printing "bye".
+
+       p_3 will be forked and after its child processes finish it will call execvp which will create another
+       process that will print the output of the 'date' command.
+
+       p_4 will call execvp which will create another process that will print the output of the 'date' command.
+
+        
+
+* Problem 12.3
+
+** a)
+
+    X > 8
+    Z := X * 2 ⇒ Z > 16
+    Y := Z + 2 ⇒ Y > 18
+    X := Y * 3 ⇒ X > 54
+
+    ∴ Strongest postcondition is: X > 54 ∧ Y > 18 ∧ Z > 16
+
+
+** b) 
+
+    We know that X > 10 ∧ Y < 20.
+
+    Using assignment axiom:
+    X := Y - 4
+    Y - 4 > 10 ⇒ Y > 14 ⇒ 14 < y < 20
+
+    Using assignment axiom:
+    Y := X * 4
+    14 < X * 4 < 20 ⇒ 14/4 < X < 5
+
+    Using assignment axiom:
+    X := X + 2
+    14/4 < X + 2 < 5 ⇒ 3/2 < X < 3
+
+    Hence, weakest precondition is:
+    3/2 < X < 3
+
+
+** c)
+    
+
+    We know that 7 ≤ Y < 25.
+
+    Using assignment axiom:
+    Y := Y - 2
+    7 ≤ Y - 2 < 25 ⇒ 9 ≤ Y < 27
+
+    Using if-else axiom:
+    Statement is X < 12.
+
+    Case 1 (X ≥ 12), else block:
+        
+        Using assignment axiom:
+        Y := X + 6
+        9 ≤ X + 6 < 27 ⇒ 3 ≤ X < 21
+
+        But since X ≥ 12, we get:
+        12 ≤ X < 21
+
+        Using assignment axiom:
+        X := 3 * Y - 2
+        12 ≤ 3 * Y - 2 < 21 ⇒ 14/3 ≤ Y < 23/3
+
+
+    Case 2 (X < 12), if block:
+
+        Using assignment axiom:
+        Y := 3 * X - 9
+        9 ≤ 3 * X - 9 < 27 ⇒ 6 ≤ X < 12
+
+        Using assignment axiom:
+        X := 3 * Y - 2
+        6 ≤ 3 * Y - 2 < 12 ⇒ 8/3 ≤ Y < 14/3
+
+
+    Hence, if we combine our two preconditions we get our final answer:
+    8/3 ≤ Y < 23/3
+

@@ -1,0 +1,28 @@
+* Postcondition Weakening
+
+  We can create a superset over our output set, Q. Call it Q'.
+
+  Hence:
+
+  (Q ⇒ Q' ∧ {P} C {Q}) ⇒ {P} C {Q'}
+
+** Verification
+
+   With assignment operator start from postcondition to precondition.
+
+   For conjuction, if we have shown that {P_1} maps to {Q_1} and that
+   {P_2} maps to {Q_2}, then {P_1 ∧ P_2} maps to {Q_1 ∧ Q_2}.
+
+   Similarly for disjuction {P_1 ∨ P_2} maps to {Q_1 ∨ Q_2}.
+
+   For skip operator: {P} stays {P}.
+
+   For a sequence {P} maps to {Q} and {Q} maps to {R}, then {P} maps to {R}.
+
+   For conditionals if your conditional statement, S, is true, then C_1 is executed,
+   else another C_2 is executed. (P ∧ S) determines if-block, (P ∧ ¬S) determines else-block. 
+   Start from right to left.
+
+   For a while loop {P ∧ S} C {P}
+   We need an invariant (something that is true before and during the while loop, and
+   is true when the loop exits).

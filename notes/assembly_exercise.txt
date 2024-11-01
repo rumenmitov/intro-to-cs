@@ -1,0 +1,17 @@
+0       Load #1
+1       Store 15
+2       Load 15
+3       Equal #10
+4       Jump 7
+5       Add #10
+6       Halt
+7       Store 14
+8       Load 15
+8       Add #1
+9       Add 14
+10      Store 15
+11      Jump #3
+12
+13
+14
+15
